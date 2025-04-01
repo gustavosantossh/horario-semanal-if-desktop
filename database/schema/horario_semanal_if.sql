@@ -1,6 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS horario_semanal_if;
 
-use horario_semanal_if;
+USE horario_semanal_if;
 
 CREATE TABLE IF NOT EXISTS horarios (
 	id INT PRIMARY KEY AUTO_INCREMENT,
