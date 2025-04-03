@@ -1,6 +1,10 @@
 from tkinter import *
+from teste import MySqlConnection
 
+db = MySqlConnection()
 root = Tk()
+
+MAIN_COLOR = "#04030F"
 
 class App:
     def __init__(self):
@@ -17,20 +21,20 @@ class App:
         root.title("Horário Semanal")
         
     def login(self):
-        loginFrame = Frame(root, bd=4)
+        loginFrame = Frame(root, background=MAIN_COLOR, width=600, height=300)
+        loginFrame.pack(expand=True)
+        loginFrame.pack_propagate(False)
         
-        loginFrame.place(relx=0.5, rely=0.5, anchor="center" , relheight=0.5, relwidth=0.4)
+        labelEmail = Label(loginFrame, text="Email: ", font=("Arial Bold", 14), fg="white", bg=MAIN_COLOR, pady=2).pack(anchor="w")
+        entryEmail = Entry(loginFrame, font=("Arial Bold", 12))
+        entryEmail.pack(fill="x", ipady=2) 
         
-        # ---------------------------
+        labelSenha = Label(loginFrame, text="Senha: ", font=("Arial Bold", 14), fg="white", bg=MAIN_COLOR, pady=2).pack(anchor="w")
+        entrySenha = Entry(loginFrame, show="*", font=("Arial Bold", 12))
+        entrySenha.pack(fill="x", ipady=2)
         
-        loginTextLabel = Label(loginFrame, text="Email").place(relx=0.4, rely=0.2, anchor="e")
+        loginButton = Button(loginFrame, text="Login", font=("Arial Bold", 14), fg="white", background="green", command=lambda: db.verify_login(entryEmail.get(), entrySenha.get()))
+        loginButton.pack(fill="x", pady=20) 
         
-        loginInputEmail = Entry(loginFrame, ).place(relx=0.5, rely=0.3, anchor="center")
-        
-        #  ----------------------------
-        
-        loginTextLabelSenha = Label(loginFrame, text="Senha").place(relx=0.4, rely=0.5, anchor="e")
-        
-        loginInputSenha = Entry(loginFrame, ).place(relx=0.5, rely=0.6, anchor="center")
         
 App()
