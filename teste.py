@@ -1,6 +1,5 @@
 import mysql.connector
 
-
 class MySqlConnection():
     def __init__(self):
         self.conn = mysql.connector.connect(
@@ -13,19 +12,20 @@ class MySqlConnection():
         self.cursor = self.conn.cursor()
 
     def verify_login(self, email: str, senha: str) -> bool:
-        print("entrei!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print(email, senha)
-        
         cursor = self.cursor
-        query = f'SELECT email from user WHERE email = %s AND senha = %s'
-        cursor.execute(query, (email, senha))
+        query = f'SELECT email from user WHERE email = "{email}" AND senha = "{senha}"'
+        cursor.execute(query)
         resultado = cursor.fetchone()
         
         cursor.close()
         self.conn.close()
         
+        print(resultado)
+        
         if resultado:
+            print("sucesso")
             return True
+        print("error")
         return False
 
 # cursor = conn.cursor()
