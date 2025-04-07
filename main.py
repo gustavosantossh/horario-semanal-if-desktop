@@ -1,7 +1,7 @@
 from tkinter import *
 from src.assets.colors import *
 from src.windows.login import Login
-from teste import MySqlConnection
+from database.SqliteConnection import SqliteConnection
 
 root = Tk()
 
