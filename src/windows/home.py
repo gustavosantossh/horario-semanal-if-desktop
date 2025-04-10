@@ -11,10 +11,12 @@ class Home():
         self.build()
     
     def build(self):
-        homeFrame = Frame(self.root, background=MAIN_COLOR, width=600, height=300)
+        homeFrame = Frame(self.root, background="#ccc", width=700, height=400)
         homeFrame.pack(expand=True)
         homeFrame.pack_propagate(False)
 
-        labelTitle = Label(homeFrame, text="Home", font=(
-            "Arial Bold", 24), fg="white", bg=MAIN_COLOR, pady=2)
-        labelTitle.pack(anchor="center")
+        serachEntry = Entry(homeFrame, width=200)
+        serachEntry.pack(fill="x", pady=10)
+        
+        searchButton = Button(homeFrame, text="Buscar", font=("Arial Bold", 14), fg="white", background="green")
+        searchButton.pack(fill="x")
