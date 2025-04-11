@@ -7,5 +7,8 @@ class User:
         
         self.cursor = self.conn.cursor()
       
-    def searchHorario(self, ):
-        query = f"SELECT * FROM horarios WHERE turma LIKE '%a%' OR curso LIKE '%%'"
+    def searchHorario(self, turma='', curso=''):
+        query = f"SELECT * FROM horarios WHERE turma LIKE '%{turma}%' OR curso LIKE '%{curso}%'"
+        
+    def create(self, turma: str, curso: str, disciplina: str, dia_semana: str, horario_aula: str, sala: str, professor: str):
+        query = f"INSERT INTO horarios (nome_da_turma, curso, disciplina, dia_da_semana, horario_da_aula, sala, professor) VALUES (?, ?, ?, ?, ?, ?, ?)"
