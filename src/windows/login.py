@@ -23,7 +23,7 @@ class Login():
 
         labelEmail = Label(loginFrame, text="Email: ", font=(
             "Arial Bold", 14), fg="white", bg=MAIN_COLOR, pady=2).pack(anchor="w")
-        entryEmail = Entry(loginFrame, font=("Arial Bold", 12), background="#CCC")
+        entryEmail = Entry(loginFrame, font=("Arial Bold", 12))
         entryEmail.pack(fill="x", ipady=2)
 
         labelSenha = Label(loginFrame, text="Senha: ", font=(
