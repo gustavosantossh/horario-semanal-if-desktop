@@ -3,6 +3,7 @@ from src.assets.colors import *
 from database.SqliteConnection import SqliteConnection
 from src.Models.Horario import Horario
 from src.windows.adicionarHorario import AdicionarHorario
+from src.windows.editarHorario import EditarrHorario
 
 db = SqliteConnection()
 
@@ -73,8 +74,10 @@ class Home():
                     label.grid(row=i, column=j, sticky="nsew")
                     
                 deleteButton = Button(frame, text="Apagar", font=("Arial Bold", 14), fg="white", background="red", command=lambda id=linha[0]: self.deletarHorario(id, frame))
+                editButton = Button(frame, text="Editar", font=("Arial Bold", 14), fg="white", background="orange", command=lambda id=linha[0]: self.editarHorario(id, self.root))
                 
                 deleteButton.grid(row=i, column=len(linha), sticky="nsew")
+                editButton.grid(row=i, column=len(linha) + 1, sticky="nsew")
         
         else:
             Label(frame, text="Nenhum dado encontrado").pack(anchor="center")
@@ -84,6 +87,20 @@ class Home():
             self.iHorario.delete(registro_id)
             self.atualizarTabela(frame)
             return 
+        except Exception as e:
+            print(e)
+
+
+    def editarHorario(self, registro_id, frame):
+        try:
+            response = self.iHorario.findHorarioEdit(registro_id)
+
+            if response:
+                for widget in frame.winfo_children():
+                    widget.destroy()
+
+            return EditarrHorario(self.root, response)
+
         except Exception as e:
             print(e)
                 

@@ -40,6 +40,25 @@ class Horario:
             return True
         except sqlite3.Error as e:
             print("Error: ", e)
+
+    def findHorarioEdit(self, id):
+        searchHorarioById = f"SELECT * FROM horarios WHERE id = ?"
+        self.cursor.execute(searchHorarioById, (id,))
+
+        resultado = self.cursor.fetchall()
+
+        return resultado
+
+    def editar(self, turma: str, curso: str, disciplina: str, dia_semana: str, horario_aula: str, sala: str, professor: str, id) -> bool:
+        try:
+            query = f"UPDATE horarios SET turma = ?, curso = ?, disciplina = ?, dia_da_semana = ?, horario_da_aula = ? , sala = ?, professor = ? where id = ?"
+
+            self.cursor.execute(query, (turma, curso, disciplina, dia_semana, horario_aula, sala, professor, id))
+            self.conn.commit()
+            
+            return True
+        except sqlite3.Error as e:
+            print("Tente novamente: ", e)
             
     def delete(self, id):
         try:
